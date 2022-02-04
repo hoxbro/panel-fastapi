@@ -1,0 +1,18 @@
+version: "3"
+services:
+  web:
+    build: .
+    restart: unless-stopped
+    volumes:
+      - .:/app
+    command: bash -c "uvicorn app.main:app --host 0.0.0.0"
+
+  nginx:
+    build: ./nginx
+    restart: unless-stopped
+    ports:
+      - 8080:80
+    volumes:
+      - ./static:/static
+    depends_on:
+      - web

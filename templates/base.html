@@ -1,0 +1,93 @@
+{% block doc %}
+<!doctype html>
+<html lang="en">
+{% block html %}
+
+<head>
+    {% block head %}
+    <title>{% block title %}Multipage{% endblock title %}</title>
+    <!-- Required meta tags -->
+    {% block meta %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Example">
+    <meta name="keywords" content="example">
+    {% endblock meta %}
+
+    {% block styles %}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+        integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    {% endblock styles %}
+
+    <link rel="shortcut icon" href="static/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="static/favicon.ico" type="image/x-icon">
+    {% endblock head %}
+</head>
+
+<!-- BODY -->
+
+<body id="home" {% block body_attributs %}{% endblock body_attributs %}>
+    {% block body %}
+    <!-- NAVBAR -->
+    {% block navbar %}
+    <nav id="main-nav"
+        class="navbar navbar-expand-md navbar-dark bg-dark navbar-fixed-top {% block navbar_class %}{% endblock navbar_class %}">
+        <div class="container-fluid">
+            <!-- brand -->
+            <a class="navbar-brand d-none d-sm-block logo" href="/">
+                <span class="blink_me">Multipage</span></a>
+            <a class="navbar-brand d-block d-sm-none logo" href="/"><span class=" blink_me">Multipage</span></a>
+            <!-- navigation button and toggler-icon -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- navbar collect element -->
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav ml-auto mr-4">
+                    {% block navbar_item %}
+                    {% for title in titles -%}
+                    <a class="nav-item nav-link" href="{{title}}">{{titles[title]}}</a>
+                    {% endfor %}
+
+                    {% if username is defined and username is not none %}
+                    <a class="nav-item nav-link" href="logout">Logout ({{ username }})</a>
+                    {% else %}
+                    <a class="nav-item nav-link" href="login">Login</a>
+                    {% endif %}
+
+                    {% endblock navbar_item %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    {% endblock navbar %}
+
+    <!-- MAIN-->
+    {% block content %}
+    {{ server_script|safe }}
+    {% endblock %}
+
+
+    <!-- FOOTER -->
+    <footer id="footer" class="container-fluid bg-dark text-white text-center p-2 fixed-bottom">
+        {% block footer %}
+        <a>Generate by version {{ version }}</a>
+        {% endblock footer %}
+    </footer>
+
+    {% block scripts %}
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous">
+    </script>
+    {% endblock scripts %}
+    {% endblock body %}
+</body>
+{% endblock html %}
+
+</html>
+{% endblock doc %}

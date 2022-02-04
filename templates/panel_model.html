@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<title>{% block title %}{{ title }}{% endblock title %}</title>
+
+<body>
+    {{ script|safe }}
+</body>
+
+{% endblock content %}

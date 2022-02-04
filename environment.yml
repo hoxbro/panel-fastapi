@@ -1,0 +1,23 @@
+channels:
+  - conda-forge
+dependencies:
+  # Runtime
+  - python=3.8
+  - numpy
+  - scipy
+  - pandas
+  # Holoviz
+  - bokeh
+  - panel
+  - hvplot
+  - holoviews
+  # FastAPI
+  - fastapi
+  - uvicorn
+  - uvloop
+  - websockets
+  - httptools
+  - aiofiles
+  - python-multipart
+  - pip:
+      - fastapi_login

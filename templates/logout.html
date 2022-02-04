@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+
+<br>
+<div>
+    <h3>
+        <center>You have been logged out!</center>
+    </h3>
+</div>
+
+<script>
+    function redirect() {
+        window.location.href = "/";
+    }
+
+    setTimeout(redirect, 3000); // 2000 is equivalent to 2 seconds
+</script>
+
+{% endblock content %}

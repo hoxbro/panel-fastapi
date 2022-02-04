@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<body>
+    <div class="content-section" style="width:70%; margin:0 auto;">
+        <form method="POST" action="/auth/login?{{ request.url.query }}">
+            <fieldset class='form-group'></fieldset>
+            <legend class="border-bottom mb-4">Log In</legend>
+
+            {% if bad_login is defined and bad_login is not none %}
+            <div class="alert alert-block alert-danger">
+                <ul class="m-0">
+                    <li>Please enter a correct username and password. Note that both fields
+                        may be case-sensitive.</li>
+                </ul>
+            </div>
+            {% endif %}
+
+            <div class="form-group">
+                <label for="username">Username*</label>
+                <input id="username" class="textinput textInput form-control" , name="username" type="text" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password*</label>
+                <input id="Password" class="textinput textInput form-control" , name="password" type="password"
+                    required>
+            </div>
+
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Login</button>
+            </div>
+
+            </fielset>
+        </form>
+    </div>
+</body>
+
+{% endblock content %}
