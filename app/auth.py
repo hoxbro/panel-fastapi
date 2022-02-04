@@ -1,12 +1,11 @@
 from __future__ import annotations
 
-from fastapi import APIRouter
-from fastapi import Depends, Request, status
+from fastapi import APIRouter, Depends, Request, status
 from fastapi.responses import RedirectResponse
 from fastapi.security import OAuth2PasswordRequestForm
 from fastapi_login import LoginManager
 
-from app.settings import templates, SECRET_KEY, GLOBAL_CONTEXT
+from app.settings import GLOBAL_CONTEXT, SECRET_KEY, templates
 
 auth_router = APIRouter()
 

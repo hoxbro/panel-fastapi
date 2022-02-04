@@ -1,8 +1,8 @@
 import numpy as np
+import panel as pn
 import param
 from bokeh.models import ColumnDataSource
 from bokeh.plotting import figure
-import panel as pn
 
 
 class SineWave(pn.viewable.Viewer):

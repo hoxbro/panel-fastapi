@@ -10,14 +10,8 @@ from fastapi import Depends, FastAPI, HTTPException, Request
 from fastapi.staticfiles import StaticFiles
 
 from app.auth import auth_exception, auth_manager, auth_router, get_current_user
-from app.settings import (
-    ALLOWED_HOSTS,
-    SECRET_KEY,
-    templates,
-    GLOBAL_CONTEXT,
-)
-
-from models import titles, serving
+from app.settings import ALLOWED_HOSTS, GLOBAL_CONTEXT, SECRET_KEY, templates
+from models import serving, titles
 
 app = FastAPI(docs_url=None, redoc_url=None)
 app.mount("/static", StaticFiles(directory="static"), name="static")
