@@ -4,8 +4,9 @@
 <title>{% block title %}{{ title }}{% endblock title %}</title>
 
 <body>
-    <br>
-    {{ script|safe }}
+    <div style="position:absolute; top:80px; left:20px; right:20px; bottom: 50px;">
+        {{ script|safe }}
+    </div>
 </body>
 
 {% endblock content %}

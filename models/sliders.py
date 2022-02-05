@@ -24,6 +24,7 @@ class SineWave(pn.viewable.Viewer):
             tools="crosshair, pan, reset, save, wheel_zoom",
             x_range=self.x_range,
             y_range=self.y_range,
+            sizing_mode="stretch_both",
         )
         self.plot.line("x", "y", source=self.cds, line_width=3, line_alpha=0.6)
 
@@ -49,7 +50,7 @@ class SineWave(pn.viewable.Viewer):
         return x, y
 
     def __panel__(self):
-        return pn.Row(self.param, self.plot)
+        return pn.Row(self.param, self.plot, sizing_mode="stretch_height")
 
 
 if __name__ == "__main__":
