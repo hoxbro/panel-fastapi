@@ -47,7 +47,7 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav ml-auto mr-4">
                     {% block navbar_item %}
-                    {% for title in titles -%}
+                    {% for title in titles %}
                     <a class="nav-item nav-link" href="{{title}}">{{titles[title]}}</a>
                     {% endfor %}
 
