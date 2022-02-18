@@ -4,7 +4,7 @@ import os
 from urllib.parse import urljoin
 
 import panel as pn
-from bokeh.embed import server_session
+from bokeh.embed import server_document, server_session
 from bokeh.util.token import generate_session_id
 from fastapi import Depends, FastAPI, HTTPException, Request
 from fastapi.staticfiles import StaticFiles
@@ -38,9 +38,11 @@ async def panel_model(request: Request, model: str, user=Depends(auth_manager)):
     else:
         url = f"http://0.0.0.0:5006/panel/{model}"
 
-    script = server_session(
-        session_id=generate_session_id(SECRET_KEY, signed=True), url=url
-    )
+    # script = server_session(
+    #     session_id=generate_session_id(SECRET_KEY, signed=True), url=url
+    # )
+
+    script = server_document(url=url, arguments=request.query_params._dict)
 
     return templates.TemplateResponse(
         "panel_model.html",
@@ -62,6 +64,6 @@ pn.serve(
     show=False,
     sign_sessions=True,
     secret_key=SECRET_KEY,
-    generate_session_ids=False,
+    generate_session_ids=True,
     num_process=1 if os.name == "nt" else 2,
 )
