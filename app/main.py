@@ -4,7 +4,7 @@ import os
 from urllib.parse import urljoin
 
 import panel as pn
-from bokeh.embed import server_document, server_session
+from bokeh.embed import server_document
 from bokeh.util.token import generate_session_id
 from fastapi import Depends, FastAPI, HTTPException, Request
 from fastapi.staticfiles import StaticFiles
