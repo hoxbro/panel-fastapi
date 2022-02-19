@@ -34,7 +34,7 @@ async def panel_model(request: Request, model: str, user=Depends(auth_manager)):
         raise HTTPException(status_code=404, detail="Item not found")
 
     if os.getenv("DOCKERENV"):
-        url = urljoin(request.headers["Referer"], f"panel/{model}")
+        url = urljoin(request.headers["host"], f"panel/{model}")
     else:
         url = f"http://0.0.0.0:5006/panel/{model}"
 
