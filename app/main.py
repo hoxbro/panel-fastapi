@@ -38,9 +38,9 @@ async def panel_model(request: Request, model: str, user=Depends(auth_manager)):
     else:
         url = f"http://0.0.0.0:5006/panel/{model}"
 
-    headers = {"Bokeh-Session-Id": generate_session_id(SECRET_KEY, signed=True)}
+    headers = {"bokeh-session-id": generate_session_id(SECRET_KEY, signed=True)}
     script = server_document(
-        url=url, arguments=request.query_params._dict, headers=headers
+        url=url, arguments=dict(request.query_params), headers=headers
     )
 
     return templates.TemplateResponse(
