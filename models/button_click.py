@@ -6,6 +6,7 @@ class ButtonClick(pn.viewable.Viewer):
     def __init__(self, **params):
         self.button = pn.widgets.Button(name="Click")
         super().__init__(**params)
+        pn.state.location.sync(self.button, {"clicks": "clicks"})
 
     @param.depends("button.clicks")
     def _update_button_click(self):

@@ -5,3 +5,6 @@ dependencies:
   - flake8
   - isort
   - mypy
+  - requests
+  - pytest
+  - types-requests

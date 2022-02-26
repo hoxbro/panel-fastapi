@@ -4,7 +4,7 @@ import os
 from urllib.parse import urljoin
 
 import panel as pn
-from bokeh.embed import server_session
+from bokeh.embed import server_document
 from bokeh.util.token import generate_session_id
 from fastapi import Depends, FastAPI, HTTPException, Request
 from fastapi.staticfiles import StaticFiles
@@ -34,12 +34,13 @@ async def panel_model(request: Request, model: str, user=Depends(auth_manager)):
         raise HTTPException(status_code=404, detail="Item not found")
 
     if os.getenv("DOCKERENV"):
-        url = urljoin(request.headers["Referer"], f"panel/{model}")
+        url = urljoin(request.headers["host"], f"panel/{model}")
     else:
         url = f"http://0.0.0.0:5006/panel/{model}"
 
-    script = server_session(
-        session_id=generate_session_id(SECRET_KEY, signed=True), url=url
+    headers = {"bokeh-session-id": generate_session_id(SECRET_KEY, signed=True)}
+    script = server_document(
+        url=url, arguments=dict(request.query_params), headers=headers
     )
 
     return templates.TemplateResponse(
