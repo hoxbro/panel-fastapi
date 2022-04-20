@@ -1,5 +1,11 @@
+import uvloop
+
 from .button_click import ButtonClick
 from .sliders import SineWave
+
+# To use uvloop as event loop for panel
+uvloop.install()
+
 
 # Fill out with new models
 _models = [

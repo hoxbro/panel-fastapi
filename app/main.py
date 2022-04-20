@@ -64,5 +64,5 @@ pn.serve(
     sign_sessions=True,
     secret_key=SECRET_KEY,
     generate_session_ids=False,
-    num_process=1 if os.name == "nt" else 2,
+    num_threads=2,
 )
